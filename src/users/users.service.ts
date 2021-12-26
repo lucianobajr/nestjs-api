@@ -7,7 +7,7 @@ import { User, UserDocument } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
   create(createUserDto: CreateUserDto) {
     const user = new this.userModel(createUserDto);
@@ -27,7 +27,7 @@ export class UsersService {
       {
         _id: id,
       },
-      { updateUserDto },
+      { $set: updateUserDto },
       { new: true },
     );
   }
